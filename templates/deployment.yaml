@@ -36,18 +36,20 @@ spec:
       {{- end }}
       containers:
         - name: {{ $svc.name }}
-          image: {{ $svc.image }}
+          image: {{ $svc.image }}:{{ $svc.tag | default "latest" }}
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: {{ $svc.port }}
+          {{- if or $svc.env (eq $svc.name "config-server") (eq $svc.name "discovery-server") }}
           env:
             - name: EUREKA_INSTANCE_HOSTNAME
-              value: {{ $svc.name }}
-
-              {{- with $svc.env }}
-              {{- range $key, $value := . }}
+              value: "{{ $svc.name }}"
+              {{- if $svc.env }}
+              {{- range $key, $value := $svc.env }}
                 - name: {{ $key }}
                   value: "{{ $value }}"
               {{- end }}
               {{- end }}
+          {{- end }}
 {{- end }}
 {{- end }}

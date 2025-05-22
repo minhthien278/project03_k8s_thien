@@ -16,6 +16,6 @@ spec:
     - protocol: TCP
       port: {{ $svc.port }}
       targetPort: {{ $svc.port }}
-      nodePort: {{ $svc.nodePort | default (add $svc.port 30000) }}  # fallback port
+      nodePort: {{ $svc.nodePort | default (add $svc.port 30000) }}
 {{- end }}
 {{- end }}
