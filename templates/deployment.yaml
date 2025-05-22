@@ -1,4 +1,5 @@
 {{- range $name, $svc := .Values.services }}
+{{- if $svc.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -30,4 +31,5 @@ spec:
               value: "{{ $value }}"
             {{- end }}
             {{- end }}
+{{- end }}
 {{- end }}
