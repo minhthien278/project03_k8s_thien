@@ -25,11 +25,14 @@ spec:
           ports:
             - containerPort: {{ $svc.port }}
           env:
-            {{- with $svc.env }}
-            {{- range $key, $value := . }}
-            - name: {{ $key }}
-              value: "{{ $value }}"
-            {{- end }}
-            {{- end }}
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: {{ $service.name }}
+
+              {{- with $svc.env }}
+              {{- range $key, $value := . }}
+                - name: {{ $key }}
+                  value: "{{ $value }}"
+              {{- end }}
+              {{- end }}
 {{- end }}
 {{- end }}
