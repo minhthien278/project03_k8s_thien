@@ -7,66 +7,63 @@ services:
   spring-petclinic-admin-server:
     enabled: true
     name: admin-server
-    image: tlavu2004/spring-petclinic-admin-server:v1.0.0
+    image: tlavu2004/spring-petclinic-admin-server:latest
     port: 9090
-    nodePort: 32090
-    replicaCount: 2
+    nodePort: 31090
+    replicaCount: 1
 
   spring-petclinic-api-gateway:
     enabled: true
     name: api-gateway
-    image: tlavu2004/spring-petclinic-api-gateway:v1.0.0
+    image: tlavu2004/spring-petclinic-api-gateway:latest
     port: 8080
-    nodePort: 32070
-    replicaCount: 2
+    nodePort: 31070
+    replicaCount: 1
 
   spring-petclinic-config-server:
     enabled: true
     name: config-server
-    image: tlavu2004/spring-petclinic-config-server:v1.0.0
+    image: tlavu2004/spring-petclinic-config-server:latest
     port: 8888
-    nodePort: 32088
-    replicaCount: 2
+    nodePort: 31088
+    replicaCount: 1
 
   spring-petclinic-customers-service:
     enabled: true
     name: customers-service
-    image: tlavu2004/spring-petclinic-customers-service:v1.0.0
+    image: tlavu2004/spring-petclinic-customers-service:latest
     port: 8082
-    nodePort: 32082
-    replicaCount: 2
+    nodePort: 31082
+    replicaCount: 1
 
   spring-petclinic-discovery-server:
     enabled: true
     name: discovery-server
-    image: tlavu2004/spring-petclinic-discovery-server:v1.0.0
+    image: tlavu2004/spring-petclinic-discovery-server:latest
     port: 8761
-    nodePort: 32076
-    replicaCount: 2
+    nodePort: 31076
+    replicaCount: 1
 
   spring-petclinic-genai-service:
     enabled: true
     name: genai-service
-    image: tlavu2004/spring-petclinic-genai-service:v1.0.0
+    image: tlavu2004/spring-petclinic-genai-service:latest
     port: 8083
-    nodePort: 32083
-    replicaCount: 2
+    nodePort: 31083
+    replicaCount: 1
 
   spring-petclinic-vets-service:
     enabled: true
     name: vets-service
-    image: tlavu2004/spring-petclinic-vets-service:v1.0.0
+    image: tlavu2004/spring-petclinic-vets-service:latest
     port: 8080
-    nodePort: 32080
-    replicaCount: 2
-    ingressHost: vets.local
-    env:
-      SPRING_PROFILES_ACTIVE: "staging"
+    nodePort: 31080
+    replicaCount: 1
 
   spring-petclinic-visits-service:
     enabled: true
     name: visits-service
-    image: tlavu2004/spring-petclinic-visits-service:v1.0.0
+    image: tlavu2004/spring-petclinic-visits-service:latest
     port: 8081
-    nodePort: 32081
-    replicaCount: 2
+    nodePort: 31081
+    replicaCount: 1
