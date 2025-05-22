@@ -1,23 +1,22 @@
-{{- if .Values.global.ingress.enabled }}
+{{- range $name, $service := .Values.services }}
+{{- if and (hasKey $service "ingress") }}
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ .Release.Name }}-ingress
-  namespace: {{ .Values.global.namespace }}
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  name: {{ $service.name }}-ingress
+  namespace: {{ $.Values.global.namespace }}
 spec:
   rules:
-    {{- range $name, $svc := .Values.services }}
-    - host: {{ $svc.ingressHost }}
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: {{ $svc.name }}
-                port:
-                  number: {{ $svc.port }}
-    {{- end }}
+  - host: {{ $service.ingress.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ $service.name }}
+            port:
+              number: {{ $service.port }}
+{{- end }}
 {{- end }}

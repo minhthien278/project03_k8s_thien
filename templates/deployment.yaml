@@ -1,5 +1,4 @@
 {{- range $name, $svc := .Values.services }}
-{{- if $svc.enabled }}
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -8,46 +7,44 @@ metadata:
   namespace: {{ $.Values.global.namespace }}
   labels:
     app: {{ $svc.name }}
-    {{- include "project02.labels" $ | nindent 4 }}
 spec:
-  replicas: {{ $svc.replicaCount | default 1 }}
+  replicas: {{ $svc.replicaCount }}
   selector:
     matchLabels:
       app: {{ $svc.name }}
   template:
-    metadata:
+    metadata: 
       labels:
         app: {{ $svc.name }}
     spec:
-      {{- if eq $svc.name "config-server" }}
-      # Config server doesn't wait for anything
-      {{- else if eq $svc.name "discovery-server" }}
-      # Discovery server only waits for config-server
-      initContainers:
-      - name: wait-for-config
-        image: busybox:1.28
-        command: ['sh', '-c', 'until nslookup config-server; do echo waiting for config-server; sleep 2; done;']
-      {{- else }}
-      # All other services wait for both config-server and discovery-server
-      initContainers:
-      - name: wait-for-dependencies
-        image: busybox:1.28
-        command: ['sh', '-c', 'until nslookup config-server && nslookup discovery-server; do echo waiting for dependencies; sleep 2; done;']
-      {{- end }}
+      # {{- if eq $svc.name "config-server" }}
+      # # Config server doesn't wait for anything
+      # {{- else if eq $svc.name "discovery-server" }}
+      # # Discovery server only waits for config-server
+      # initContainers:
+      # - name: wait-for-config
+      #   image: busybox:1.28
+      #   command: ['sh', '-c', 'until nslookup config-server; do echo waiting for config-server; sleep 2; done;']
+      # {{- else }}
+      # # All other services wait for both config-server and discovery-server
+      # initContainers:
+      # - name: wait-for-dependencies
+      #   image: busybox:1.28
+      #   command: ['sh', '-c', 'until nslookup config-server && nslookup discovery-server; do echo waiting for dependencies; sleep 2; done;']
+      # {{- end }}
       containers:
-        - name: {{ $svc.name }}
-          image: {{ $svc.image }}
-          ports:
-            - containerPort: {{ $svc.port }}
-          env:
-            - name: EUREKA_INSTANCE_HOSTNAME
-              value: {{ $svc.name }}
+      - name: {{ $svc.name }}
+        image: {{ $svc.image }}
+        ports:
+        - containerPort: {{ $svc.port }}
+        env:
+          - name: EUREKA_INSTANCE_HOSTNAME
+            value: {{ $svc.name }}
+          {{- if $svc.env }}
+          {{- range $svc.env }}
+          - name: {{ .name }}
+            value: {{ .value | quote }}
+          {{- end }}
+          {{- end }}
+{{- end }}
 
-              {{- with $svc.env }}
-              {{- range $key, $value := . }}
-                - name: {{ $key }}
-                  value: "{{ $value }}"
-              {{- end }}
-              {{- end }}
-{{- end }}
-{{- end }}
