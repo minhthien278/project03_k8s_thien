@@ -5,6 +5,7 @@ global:
 
 services:
   spring-petclinic-admin-server:
+    enabled: true
     name: admin-server
     image: tlavu2004/spring-petclinic-admin-server:v1.0.0
     port: 9090
@@ -12,6 +13,7 @@ services:
     replicaCount: 2
 
   spring-petclinic-api-gateway:
+    enabled: true
     name: api-gateway
     image: tlavu2004/spring-petclinic-api-gateway:v1.0.0
     port: 8080
@@ -19,6 +21,7 @@ services:
     replicaCount: 2
 
   spring-petclinic-config-server:
+    enabled: true
     name: config-server
     image: tlavu2004/spring-petclinic-config-server:v1.0.0
     port: 8888
@@ -26,6 +29,7 @@ services:
     replicaCount: 2
 
   spring-petclinic-customers-service:
+    enabled: true
     name: customers-service
     image: tlavu2004/spring-petclinic-customers-service:v1.0.0
     port: 8082
@@ -33,6 +37,7 @@ services:
     replicaCount: 2
 
   spring-petclinic-discovery-server:
+    enabled: true
     name: discovery-server
     image: tlavu2004/spring-petclinic-discovery-server:v1.0.0
     port: 8761
@@ -40,6 +45,7 @@ services:
     replicaCount: 2
 
   spring-petclinic-genai-service:
+    enabled: true
     name: genai-service
     image: tlavu2004/spring-petclinic-genai-service:v1.0.0
     port: 8083
@@ -47,6 +53,7 @@ services:
     replicaCount: 2
 
   spring-petclinic-vets-service:
+    enabled: true
     name: vets-service
     image: tlavu2004/spring-petclinic-vets-service:v1.0.0
     port: 8080
@@ -57,6 +64,7 @@ services:
       SPRING_PROFILES_ACTIVE: "staging"
 
   spring-petclinic-visits-service:
+    enabled: true
     name: visits-service
     image: tlavu2004/spring-petclinic-visits-service:v1.0.0
     port: 8081
