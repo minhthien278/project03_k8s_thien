@@ -44,7 +44,7 @@ services:
     name: genai-service
     image: tlavu2004/spring-petclinic-genai-service
     tag: latest
-    port: 8080
+    port: 8084
 
   spring-petclinic-vets-service:
     enabled: true
