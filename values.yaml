@@ -1,0 +1,61 @@
+global:
+  namespace: default
+  ingress:
+    enabled: false
+
+services:
+  spring-petclinic-vets-service:
+    name: vets-service
+    image: tlavu2004/spring-petclinic-vets-service
+    tag: latest
+    port: 8080
+    enabled: true
+
+  spring-petclinic-visits-service:
+    name: visits-service
+    image: tlavu2004/spring-petclinic-visits-service
+    tag: latest
+    port: 8080
+    enabled: true
+
+  spring-petclinic-customers-service:
+    name: customers-service
+    image: tlavu2004/spring-petclinic-customers-service
+    tag: latest
+    port: 8080
+    enabled: true
+
+  spring-petclinic-api-gateway:
+    name: api-gateway
+    image: tlavu2004/spring-petclinic-api-gateway
+    tag: latest
+    port: 8080
+    enabled: true
+
+  spring-petclinic-discovery-server:
+    name: discovery-server
+    image: tlavu2004/spring-petclinic-discovery-server
+    tag: latest
+    port: 8761
+    enabled: true
+
+  spring-petclinic-config-server:
+    name: config-server
+    image: tlavu2004/spring-petclinic-config-server
+    tag: latest
+    port: 8888
+    enabled: true
+
+  spring-petclinic-admin-server:
+    name: admin-server
+    image: tlavu2004/spring-petclinic-admin-server
+    tag: latest
+    port: 9090
+    enabled: true
+
+  spring-petclinic-genai-service:
+    name: genai-service
+    image: tlavu2004/spring-petclinic-genai-service
+    tag: latest
+    port: 8080
+    enabled: true

@@ -1,0 +1,64 @@
+global:
+  namespace: tlavu-petclinic-staging
+  ingress:
+    enabled: false
+
+services:
+  spring-petclinic-admin-server:
+    name: admin-server
+    image: tlavu2004/spring-petclinic-admin-server:v1.0.0
+    port: 9090
+    nodePort: 32090
+    replicaCount: 2
+
+  spring-petclinic-api-gateway:
+    name: api-gateway
+    image: tlavu2004/spring-petclinic-api-gateway:v1.0.0
+    port: 8080
+    nodePort: 32070
+    replicaCount: 2
+
+  spring-petclinic-config-server:
+    name: config-server
+    image: tlavu2004/spring-petclinic-config-server:v1.0.0
+    port: 8888
+    nodePort: 32088
+    replicaCount: 2
+
+  spring-petclinic-customers-service:
+    name: customers-service
+    image: tlavu2004/spring-petclinic-customers-service:v1.0.0
+    port: 8082
+    nodePort: 32082
+    replicaCount: 2
+
+  spring-petclinic-discovery-server:
+    name: discovery-server
+    image: tlavu2004/spring-petclinic-discovery-server:v1.0.0
+    port: 8761
+    nodePort: 32076
+    replicaCount: 2
+
+  spring-petclinic-genai-service:
+    name: genai-service
+    image: tlavu2004/spring-petclinic-genai-service:v1.0.0
+    port: 8083
+    nodePort: 32083
+    replicaCount: 2
+
+  spring-petclinic-vets-service:
+    name: vets-service
+    image: tlavu2004/spring-petclinic-vets-service:v1.0.0
+    port: 8080
+    nodePort: 32080
+    replicaCount: 2
+    ingressHost: vets.local
+    env:
+      SPRING_PROFILES_ACTIVE: "staging"
+
+  spring-petclinic-visits-service:
+    name: visits-service
+    image: tlavu2004/spring-petclinic-visits-service:v1.0.0
+    port: 8081
+    nodePort: 32081
+    replicaCount: 2
