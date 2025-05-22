@@ -30,7 +30,7 @@ services:
     name: customers-service
     image: tlavu2004/spring-petclinic-customers-service
     tag: latest
-    port: 8080
+    port: 8081
 
   spring-petclinic-discovery-server:
     enabled: true
@@ -51,11 +51,11 @@ services:
     name: vets-service
     image: tlavu2004/spring-petclinic-vets-service
     tag: latest
-    port: 8080
+    port: 8083
 
   spring-petclinic-visits-service:
     enabled: true
     name: visits-service
     image: tlavu2004/spring-petclinic-visits-service
     tag: latest
-    port: 8080
+    port: 8082
