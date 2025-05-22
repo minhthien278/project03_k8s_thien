@@ -1,49 +1,69 @@
 global:
-  namespace: dev-review
+  namespace: tlavu-petclinic-dev
   ingress:
     enabled: false
 
 services:
-  api-gateway:
+  spring-petclinic-admin-server:
+    enabled: true
+    name: admin-server
+    image: tlavu2004/spring-petclinic-admin-server:latest
+    port: 9090
+    nodePort: 31090
+    replicaCount: 1
+
+  spring-petclinic-api-gateway:
+    enabled: true
     name: api-gateway
     image: tlavu2004/spring-petclinic-api-gateway:latest
     port: 8080
-    nodePort: 30006
+    nodePort: 31070
     replicaCount: 1
-    ingress:
-      host: petclinic-dev-review.com
 
-  config-server:
+  spring-petclinic-config-server:
+    enabled: true
     name: config-server
     image: tlavu2004/spring-petclinic-config-server:latest
     port: 8888
-    nodePort: 30003
+    nodePort: 31088
     replicaCount: 1
 
-  customers-service:
+  spring-petclinic-customers-service:
+    enabled: true
     name: customers-service
     image: tlavu2004/spring-petclinic-customers-service:latest
-    port: 8081
-    nodePort: 30004
+    port: 8082
+    nodePort: 31082
     replicaCount: 1
 
-  discovery-server:
+  spring-petclinic-discovery-server:
+    enabled: true
     name: discovery-server
     image: tlavu2004/spring-petclinic-discovery-server:latest
     port: 8761
-    nodePort: 30005
+    nodePort: 31076
     replicaCount: 1
 
-  vets-service:
+  spring-petclinic-genai-service:
+    enabled: true
+    name: genai-service
+    image: tlavu2004/spring-petclinic-genai-service:latest
+    port: 8083
+    nodePort: 31083
+    replicaCount: 1
+
+  spring-petclinic-vets-service:
+    enabled: true
     name: vets-service
     image: tlavu2004/spring-petclinic-vets-service:latest
-    port: 8083
-    nodePort: 30008
+    port: 8080
+    nodePort: 31080
     replicaCount: 1
 
-  visits-service:
+  spring-petclinic-visits-service:
+    enabled: true
     name: visits-service
     image: tlavu2004/spring-petclinic-visits-service:latest
-    port: 8082
-    nodePort: 30007
+    port: 8081
+    nodePort: 31081
     replicaCount: 1
