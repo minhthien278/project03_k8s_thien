@@ -1,5 +1,5 @@
 global:
-  namespace: tlavu-petclinic-staging
+  namespace: vux-petclinic-staging
   ingress:
     enabled: false
 

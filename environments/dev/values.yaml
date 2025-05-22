@@ -1,5 +1,5 @@
 global:
-  namespace: tlavu-petclinic-dev
+  namespace: vux-petclinic-dev
   ingress:
     enabled: false
 

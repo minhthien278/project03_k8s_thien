@@ -1,6 +1,6 @@
 # environments/dev-review/values.yaml
 global:
-  namespace: tlavu-petclinic-dev-review
+  namespace: vux-petclinic-dev-review
   ingress:
     enabled: false
 
