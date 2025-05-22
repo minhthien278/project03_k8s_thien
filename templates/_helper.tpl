@@ -4,7 +4,7 @@ Standard labels used across resources
 {{- define "project02.labels" -}}
 app.kubernetes.io/name: {{ .Chart.Name }}
 app.kubernetes.io/instance: {{ .Release.Name }}
-app.kubernetes.io/version: {{ .Chart.AppVersion }}
+app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
