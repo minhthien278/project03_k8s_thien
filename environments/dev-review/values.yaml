@@ -16,11 +16,11 @@ services:
     image:
       tag: latest
 
-  customers-service:
+  discovery-server:
     image:
       tag: latest
 
-  discovery-server:
+  customers-service:
     image:
       tag: latest
     
