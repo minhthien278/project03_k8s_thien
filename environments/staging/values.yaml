@@ -1,5 +1,5 @@
 global:
-  namespace: dev-review
+  namespace: staging
 
 services:
   api-gateway:
