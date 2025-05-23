@@ -1,5 +1,5 @@
 global:
-  namespace: dev
+  namespace: dev-review
 
 services:
   api-gateway:
