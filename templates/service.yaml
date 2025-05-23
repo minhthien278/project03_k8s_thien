@@ -6,11 +6,14 @@ metadata:
   name: {{ $svc.name }}
   namespace: {{ $.Values.global.namespace }}
 spec:
-  type: ClusterIP
+  type: {{ default "ClusterIP" $svc.type }}
   selector:
     app: {{ $svc.name }}
   ports:
     - protocol: TCP
       port: {{ $svc.port }}
-      targetPort: {{ $svc.port }} 
+      targetPort: {{ $svc.port }}
+      {{- if and (eq $svc.type "NodePort") $svc.nodePort }}
+      nodePort: {{ $svc.nodePort }}
+      {{- end }}
 {{- end }}
