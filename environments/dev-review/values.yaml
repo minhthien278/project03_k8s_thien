@@ -1,47 +1,29 @@
 global:
-  namespace: dev-review
+  namespace: dev
 
 services:
   api-gateway:
-    name: api-gateway
-    image: tlavu2004/spring-petclinic-api-gateway:latest
-    port: 8080
-    nodePort: 30006
-    replicaCount: 1
+    image:
+      tag: latest
     ingress:
       host: petclinic-dev-review.com
 
   config-server:
-    name: config-server
-    image: tlavu2004/spring-petclinic-config-server:latest
-    port: 8888
-    nodePort: 30003
-    replicaCount: 1
-    
+    image:
+      tag: latest
+
   customers-service:
-    name: customers-service
-    image: tlavu2004/spring-petclinic-customers-service:latest
-    port: 8081
-    nodePort: 30004
-    replicaCount: 1
+    image:
+      tag: latest
 
   discovery-server:
-    name: discovery-server
-    image: tlavu2004/spring-petclinic-discovery-server:latest
-    port: 8761
-    nodePort: 30005
-    replicaCount: 1
-
+    image:
+      tag: latest
+    
   vets-service:
-    name: vets-service
-    image: tlavu2004/spring-petclinic-vets-service:latest
-    port: 8083
-    nodePort: 30008
-    replicaCount: 1
+    image:
+      tag: latest
 
   visits-service:
-    name: visits-service
-    image: tlavu2004/spring-petclinic-visits-service:latest
-    port: 8082
-    nodePort: 30007
-    replicaCount: 1
+    image:
+      tag: latest

@@ -1,49 +1,54 @@
 global:
   namespace: default
-  ingress:
-    enabled: false
+  dockeruser: tlavu2004
 
 services:
-  spring-petclinic-vets-service:
-    name: vets-service
-    image: tlavu2004/spring-petclinic-vets-service
-    tag: latest
-    port: 8083
-    enabled: true
-
-  spring-petclinic-visits-service:
-    name: visits-service
-    image: tlavu2004/spring-petclinic-visits-service
-    tag: latest
-    port: 8082
-    enabled: true
-
-  spring-petclinic-customers-service:
-    name: customers-service
-    image: tlavu2004/spring-petclinic-customers-service
-    tag: latest
-    port: 8081
-    enabled: true
-
-  spring-petclinic-api-gateway:
+  api-gateway:
     name: api-gateway
-    image: tlavu2004/spring-petclinic-api-gateway
-    tag: latest
+    image:
+      repository: spring-petclinic-api-gateway
+      tag: latest
     port: 8080
-    enabled: true
+    replicaCount: 1
+    ingress: 
+      host: petclinic.com
 
-  spring-petclinic-discovery-server:
-    name: discovery-server
-    image: tlavu2004/spring-petclinic-discovery-server
-    tag: latest
-    port: 8761
-    enabled: true
-
-  spring-petclinic-config-server:
+  config-server:
     name: config-server
-    image: tlavu2004/spring-petclinic-config-server
-    tag: latest
+    image:
+      repository: spring-petclinic-config-server
+      tag: latest
     port: 8888
-    enabled: true
+    replicaCount: 1
 
-  
+  discovery-server:
+    name: discovery-server
+    image:
+      repository: spring-petclinic-discovery-server
+      tag: latest
+    port: 8761
+    replicaCount: 1
+
+  customers-service:
+    name: customers-service
+    image:
+      repository: spring-petclinic-customers-service
+      tag: latest
+    port: 8081
+    replicaCount: 1
+
+  visits-service:
+    name: visits-service
+    image:
+      repository: spring-petclinic-visits-service
+      tag: latest
+    port: 8082
+    replicaCount: 1
+
+  vets-service:
+    name: vets-service
+    image:
+      repository: spring-petclinic-vets-service
+      tag: latest
+    port: 8083
+    replicaCount: 1
