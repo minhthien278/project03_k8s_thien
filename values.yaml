@@ -13,6 +13,14 @@ services:
     ingress: 
       host: petclinic.com
 
+  admin-server:
+    name: admin-server
+    image:
+      repository: spring-petclinic-admin-server
+      tag: latest
+    port: 9090
+    replicaCount: 1
+
   config-server:
     name: config-server
     image:
@@ -51,4 +59,12 @@ services:
       repository: spring-petclinic-vets-service
       tag: latest
     port: 8083
+    replicaCount: 1
+
+  genai-service:
+    name: genai-service
+    image:
+      repository: spring-petclinic-genai-service
+      tag: latest
+    port: 8084
     replicaCount: 1

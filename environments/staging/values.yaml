@@ -8,6 +8,10 @@ services:
     ingress:
       host: petclinic-staging.com
 
+  admin-server:
+    image:
+      tag: latest
+
   config-server:
     image:
       tag: latest
@@ -25,5 +29,9 @@ services:
       tag: latest
 
   visits-service:
+    image:
+      tag: latest
+
+  genai-service:
     image:
       tag: latest
