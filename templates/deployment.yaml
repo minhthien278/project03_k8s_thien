@@ -34,7 +34,7 @@ spec:
       # {{- end }}
       containers:
       - name: {{ $svc.name }}
-        image: {{ $svc.image }}
+        image: {{ $.Values.global.dockeruser}}/{{ $svc.image.repository }}:{{ $svc.image.tag }}
         ports:
         - containerPort: {{ $svc.port }}
         env:

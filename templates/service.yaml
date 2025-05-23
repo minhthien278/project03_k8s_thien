@@ -6,12 +6,11 @@ metadata:
   name: {{ $svc.name }}
   namespace: {{ $.Values.global.namespace }}
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: {{ $svc.name }}
   ports:
     - protocol: TCP
       port: {{ $svc.port }}
-      targetPort: {{ $svc.port }}
-      nodePort: {{ $svc.nodePort }}  
+      targetPort: {{ $svc.port }} 
 {{- end }}
