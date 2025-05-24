@@ -3,19 +3,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $svc.name }}
-  namespace: {{ $.Values.global.namespace }}
+  name: {{ $svc.name | quote }}
+  namespace: {{ $.Values.global.namespace | quote }}
   labels:
-    app: {{ $svc.name }}
+    app: {{ $svc.name | quote }}
 spec:
-  replicas: {{ $svc.replicaCount }}
+  replicas: {{ default 1 $svc.replicaCount }}
   selector:
     matchLabels:
-      app: {{ $svc.name }}
+      app: {{ $svc.name | quote }}
   template:
     metadata: 
       labels:
-        app: {{ $svc.name }}
+        app: {{ $svc.name | quote }}
     spec:
       # {{- if eq $svc.name "config-server" }}
       # # Config server doesn't wait for anything
@@ -33,13 +33,16 @@ spec:
       #   command: ['sh', '-c', 'until nslookup config-server && nslookup discovery-server; do echo waiting for dependencies; sleep 2; done;']
       # {{- end }}
       containers:
-      - name: {{ $svc.name }}
+      - name: {{ $svc.name | quote }}
         image: {{ $.Values.global.dockeruser}}/{{ $svc.image.repository }}:{{ $svc.image.tag }}
+        {{- if $svc.port }}
         ports:
         - containerPort: {{ $svc.port }}
+        {{- end }}
         env:
           - name: EUREKA_INSTANCE_HOSTNAME
-            value: {{ $svc.name }}
+            value: "{{ $svc.name }}"
+
           {{- if $svc.env }}
           {{- range $svc.env }}
           - name: {{ .name }}

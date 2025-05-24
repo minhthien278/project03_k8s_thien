@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: argocd-image-updater-config
+  namespace: argocd
+data:
+  # Cấu hình để ArgoCD Image Updater sử dụng GitHub với PAT lưu trong secret
+  git.github.com.username: $image-updater-secret:username
+  git.github.com.token: $image-updater-secret:password
