@@ -1,6 +1,3 @@
-{{- range $name, $service := .Values.services }}
-{{- if and (hasKey $service "ingress") }}
----
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
