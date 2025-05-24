@@ -4,7 +4,7 @@ global:
 services:
   api-gateway:
     image:
-      tag: 3ed9ef1
+      tag: 9b56620
     ingress:
       host: petclinic-dev-review.com
 
