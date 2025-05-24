@@ -6,7 +6,7 @@ services:
     image:
       tag: latest
     ingress:
-      host: petclinic-dev-review.com
+      host: petclinic-dev.com
 
   config-server:
     image:
