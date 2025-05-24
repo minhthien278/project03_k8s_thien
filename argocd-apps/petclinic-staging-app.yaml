@@ -1,51 +1,27 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: petclinic-staging
+  name: spring-petclinic-staging
   namespace: argocd
-  annotations:
-    # This annotation is used to configure the ArgoCD Image Updater
-    argocd-image-updater.argoproj.io/image-list: |
-      api-gateway=docker.io/tlavu2004/spring-petclinic-api-gateway,
-      admin-server=docker.io/tlavu2004/spring-petclinic-admin-server,
-      config-server=docker.io/tlavu2004/spring-petclinic-config-server,
-      discovery-server=docker.io/tlavu2004/spring-petclinic-discovery-server,
-      customers-service=docker.io/tlavu2004/spring-petclinic-customers-service,
-      visits-service=docker.io/tlavu2004/spring-petclinic-visits-service,
-      vets-service=docker.io/tlavu2004/spring-petclinic-vets-service,
-      genai-service=docker.io/tlavu2004/spring-petclinic-genai-service
-
-    argocd-image-updater.argoproj.io/admin-server.update-strategy: digest
-    argocd-image-updater.argoproj.io/api-gateway.update-strategy: digest
-    argocd-image-updater.argoproj.io/config-server.update-strategy: digest
-    argocd-image-updater.argoproj.io/customers-service.update-strategy: digest
-    argocd-image-updater.argoproj.io/discovery-server.update-strategy: digest
-    argocd-image-updater.argoproj.io/genai-service.update-strategy: digest
-    argocd-image-updater.argoproj.io/vets-service.update-strategy: digest
-    argocd-image-updater.argoproj.io/visits-service.update-strategy: digest
-
-    argocd-image-updater.argoproj.io/write-back-method: git
-    argocd-image-updater.argoproj.io/git-branch: main
-    argocd-image-updater.argoproj.io/git-path: environments/staging/values.yaml
-    argocd-image-updater.argoproj.io/git-username: petclinic-image-bot
-    argocd-image-updater.argoproj.io/git-email: petclinic-image-bot@users.noreply.github.com
-
 spec:
   project: default
-  source:
-    repoURL: https://github.com/HCMUS-DevOps-Projects/project02-k8s.git
-    targetRevision: v1.0.0
+  
+  source: 
+    repoURL: https://github.com/HCMUS-DevOps-Projects/project02-k8s
+    targetRevision: HEAD
     path: .
     helm:
       valueFiles:
-        - values.yaml
-        - environments/staging/values.yaml
+      - values.yaml
+      - environments/staging/values.yaml
+
   destination:
     server: https://kubernetes.default.svc
     namespace: staging
+  
   syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
     syncOptions:
-      - CreateNamespace=true
+    - CreateNamespace=true
+    automated:
+      selfHeal: true
+      prune: true
