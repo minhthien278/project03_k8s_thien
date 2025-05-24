@@ -33,7 +33,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/tlavu2004/project02-k8s.git
+    repoURL: https://github.com/HCMUS-DevOps-Projects/project02-k8s.git
     targetRevision: v1.0.0
     path: .
     helm:
