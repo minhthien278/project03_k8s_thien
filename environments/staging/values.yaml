@@ -11,10 +11,6 @@ services:
     ingress:
       host: petclinic-staging.com
 
-  admin-server:
-    image:
-      tag: *tag
-
   config-server:
     image:
       tag: *tag
@@ -35,6 +31,3 @@ services:
     image:
       tag: *tag
 
-  genai-service:
-    image:
-      tag: *tag
