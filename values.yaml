@@ -7,6 +7,7 @@ services:
     name: api-gateway
     image:
       repository: spring-petclinic-api-gateway
+      tag: latest
     port: 8080
     replicaCount: 1
     ingress: 
@@ -16,6 +17,7 @@ services:
     name: config-server
     image:
       repository: spring-petclinic-config-server
+      tag: latest
     port: 8888
     replicaCount: 1
 
@@ -23,6 +25,7 @@ services:
     name: discovery-server
     image:
       repository: spring-petclinic-discovery-server
+      tag: latest
     port: 8761
     replicaCount: 1
 
@@ -30,6 +33,7 @@ services:
     name: customers-service
     image:
       repository: spring-petclinic-customers-service
+      tag: latest
     port: 8081
     replicaCount: 1
 
@@ -37,6 +41,7 @@ services:
     name: visits-service
     image:
       repository: spring-petclinic-visits-service
+      tag: latest
     port: 8082
     replicaCount: 1
 
@@ -44,6 +49,7 @@ services:
     name: vets-service
     image:
       repository: spring-petclinic-vets-service
+      tag: latest
     port: 8083
     replicaCount: 1
 
