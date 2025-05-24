@@ -1,46 +1,31 @@
 global:
   namespace: dev
-  dockeruser: tlavu2004
 
 services:
   api-gateway:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-api-gateway
       tag: latest
     ingress:
-      host: petclinic-dev.com
-
-  admin-server:
-    image:
-      repository: docker.io/tlavu2004/spring-petclinic-admin-server
-      tag: latest
+      host: petclinic-dev-review.com
 
   config-server:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-config-server
       tag: latest
 
   discovery-server:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-discovery-server
       tag: latest
 
   customers-service:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-customers-service
       tag: latest
     
   vets-service:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-vets-service
       tag: latest
 
   visits-service:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-visits-service
       tag: latest
+
   
-  genai-service:
-    image:
-      repository: docker.io/tlavu2004/spring-petclinic-genai-service
-      tag: latest
