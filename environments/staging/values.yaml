@@ -2,45 +2,39 @@ global:
   namespace: staging
   dockeruser: tlavu2004
 
+imageTag: &tag v1.0
+
 services:
   api-gateway:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-api-gateway
-      tag: v1.0.0
+      tag: *tag
     ingress:
       host: petclinic-staging.com
 
   admin-server:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-admin-server
-      tag: v1.0.0
+      tag: *tag
 
   config-server:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-config-server
-      tag: v1.0.0
+      tag: *tag
 
   discovery-server:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-discovery-server
-      tag: v1.0.0
+      tag: *tag
 
   customers-service:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-customers-service
-      tag: v1.0.0
+      tag: *tag
     
   vets-service:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-vets-service
-      tag: v1.0.0
+      tag: *tag
 
   visits-service:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-visits-service
-      tag: v1.0.0
+      tag: *tag
 
   genai-service:
     image:
-      repository: docker.io/tlavu2004/spring-petclinic-genai-service
-      tag: v1.0.0
+      tag: *tag
