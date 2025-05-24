@@ -3,19 +3,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ $svc.name | quote }}
-  namespace: {{ $.Values.global.namespace | quote }}
+  name: {{ $svc.name }}
+  namespace: {{ $.Values.global.namespace }}
   labels:
-    app: {{ $svc.name | quote }}
+    app: {{ $svc.name }}
 spec:
   replicas: {{ default 1 $svc.replicaCount }}
   selector:
     matchLabels:
-      app: {{ $svc.name | quote }}
+      app: {{ $svc.name }}
   template:
     metadata: 
       labels:
-        app: {{ $svc.name | quote }}
+        app: {{ $svc.name }}
     spec:
       {{- if eq $svc.name "config-server" }}
       # Config server doesn't wait for anything
