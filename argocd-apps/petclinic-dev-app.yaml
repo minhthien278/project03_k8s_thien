@@ -34,7 +34,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/your-username/project02-k8s.git
-    targetRevision: main
+    targetRevision: latest
     path: .
     helm:
       valueFiles:
