@@ -17,21 +17,21 @@ spec:
       labels:
         app: {{ $svc.name | quote }}
     spec:
-      # {{- if eq $svc.name "config-server" }}
-      # # Config server doesn't wait for anything
-      # {{- else if eq $svc.name "discovery-server" }}
-      # # Discovery server only waits for config-server
-      # initContainers:
-      # - name: wait-for-config
-      #   image: busybox:1.28
-      #   command: ['sh', '-c', 'until nslookup config-server; do echo waiting for config-server; sleep 2; done;']
-      # {{- else }}
-      # # All other services wait for both config-server and discovery-server
-      # initContainers:
-      # - name: wait-for-dependencies
-      #   image: busybox:1.28
-      #   command: ['sh', '-c', 'until nslookup config-server && nslookup discovery-server; do echo waiting for dependencies; sleep 2; done;']
-      # {{- end }}
+      {{- if eq $svc.name "config-server" }}
+      # Config server doesn't wait for anything
+      {{- else if eq $svc.name "discovery-server" }}
+      # Discovery server only waits for config-server
+      initContainers:
+      - name: wait-for-config
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nslookup config-server; do echo waiting for config-server; sleep 2; done;']
+      {{- else }}
+      # All other services wait for both config-server and discovery-server
+      initContainers:
+      - name: wait-for-dependencies
+        image: busybox:1.28
+        command: ['sh', '-c', 'until nslookup config-server && nslookup discovery-server; do echo waiting for dependencies; sleep 2; done;']
+      {{- end }}
       containers:
       - name: {{ $svc.name | quote }}
         image: {{ $.Values.global.dockeruser}}/{{ $svc.image.repository }}:{{ $svc.image.tag }}

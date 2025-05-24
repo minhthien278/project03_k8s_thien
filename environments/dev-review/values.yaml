@@ -8,10 +8,6 @@ services:
     ingress:
       host: petclinic-dev-review.com
 
-  admin-server:
-    image:
-      tag: latest
-
   config-server:
     image:
       tag: latest
@@ -32,6 +28,4 @@ services:
     image:
       tag: latest
 
-  genai-service:
-    image:
-      tag: latest
+  
