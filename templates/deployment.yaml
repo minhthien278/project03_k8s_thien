@@ -33,7 +33,7 @@ spec:
         command: ['sh', '-c', 'until nslookup config-server && nslookup discovery-server; do echo waiting for dependencies; sleep 2; done;']
       {{- end }}
       containers:
-      - name: {{ $svc.name | quote }}
+      - name: {{ $svc.name }}
         image: {{ $.Values.global.dockeruser}}/{{ $svc.image.repository }}:{{ $svc.image.tag }}
         {{- if $svc.port }}
         ports:
