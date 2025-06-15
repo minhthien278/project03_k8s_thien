@@ -1,6 +1,6 @@
 global:
   namespace: default
-  dockeruser: tlavu2004
+  dockeruser: nguyenminhthien2708
 
 services:
   api-gateway:
